@@ -93,7 +93,6 @@ def transfer_ownership(self, file, template_file_id) -> None:
         body={"role": "writer", "pendingOwner": "true"},
     ).execute()
 
-
 @shared_task(
     base=GoogleApiClientTask,
     bind=True,
