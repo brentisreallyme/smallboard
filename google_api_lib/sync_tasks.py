@@ -42,17 +42,16 @@ def get_file_user_emails(self, file_id) -> List[str]:
     response = (
         self.drive_service().files().get(fileId=file_id, fields="permissions").execute()
     )
-
     permissions = response["permissions"]
 
     emails = set()
     for perm in permissions:
         if perm["id"] == "anyoneWithLink":
             return None
-        email = perm["emailAddress"]
-        emails.add(email)
-        emails.add(email.lower())
-
+        if "emailAddress" in perm:
+            email = perm["emailAddress"]
+            emails.add(email)
+            emails.add(email.lower())
     return sorted(list(emails))
 
 

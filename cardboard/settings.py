@@ -201,6 +201,7 @@ BOT_ACTIVE_HUNT = os.environ.get("BOT_ACTIVE_HUNT", None)
 GOOGLE_DRIVE_HUNT_FOLDER_ID = os.environ.get("GOOGLE_DRIVE_HUNT_FOLDER_ID", None)
 GOOGLE_SHEETS_TEMPLATE_FILE_ID = os.environ.get("GOOGLE_SHEETS_TEMPLATE_FILE_ID", None)
 try:
+    print(os.environ)
     GOOGLE_API_AUTHN_INFO = {
         "type": "service_account",
         "project_id": os.environ["GOOGLE_API_PROJECT_ID"],
