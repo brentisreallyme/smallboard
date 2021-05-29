@@ -372,9 +372,10 @@ class PuzzleViewSet(viewsets.ModelViewSet):
             else:
                 logger.warn("Chat room not created for puzzle %s" % name)
                 chat_room = None
-
+            logger.warn(f"[brent] Saving puzzle")
             puzzle = serializer.save(hunt=hunt, chat_room=chat_room)
 
+            logger.warn(f"[brent] Enabled Google API Lib {google_api_lib.enabled()}")
             if google_api_lib.enabled():
                 transaction.on_commit(
                     lambda: google_api_lib.tasks.create_google_sheets.delay(puzzle.id)
