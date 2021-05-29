@@ -29,6 +29,7 @@ logger = logging.getLogger(__name__)
 # helper function that can be mocked for testing
 def create_google_sheets_helper(self, name, template_file_id) -> dict:
     req_body = {"name": name}
+    logger.warn(f"[brent] Making request to drive service")
     # copy template sheet
     file = (
         self.drive_service()
