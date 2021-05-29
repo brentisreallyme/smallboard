@@ -148,14 +148,10 @@ def create_google_sheets(self, puzzle_id) -> None:
                     f"Cannot move the new puzzle for {puzzle.name} as we can't find a drive folder"
                 )
 
-            if puzzle.chat_room:
-                handle_sheet_created.delay(puzzle_id)
-
         # Only run these other tasks if we successfully commit this particular sheet ID
         # We might not be able to if there's some race condition
         # (for example, two puzzles claiming the same sheet at the same time)
         transaction.on_commit(post_create_tasks)
-
 
 def extract_id_from_sheets_url(url) -> str:
     """
